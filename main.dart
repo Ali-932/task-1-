@@ -1,11 +1,4 @@
-//Main menu
-// 1- Display all books
-// 2- Display books with rate +4.
-// 3- Add book
-// 4- Update book
-// 5- Delete book
-// 6- Search
-// Write your choice:
+
 import 'dart:io';
 import 'dart:math';
 
@@ -22,17 +15,20 @@ void main() {
 6- Search
 Write your choice:''');
     var choice = stdin.readLineSync();
-
     switch (choice) {
       case '1':
-        int i =0;
+        int i = 0;
         for (Books book in books) {
-          if (i==0){
-          book.displayBooks(true);
-          i++;}
-          else
-            book.displayBooks(false);
-
+          if (books.isEmpty==false) {
+            if (i == 0) {
+              book.displayBooks(true);
+              i++;
+            } else
+              book.displayBooks(false);
+          }
+          else{
+            print("no books to display");
+          }
         }
         break;
       case '2':
@@ -83,7 +79,7 @@ Write your choice:''');
             String? new_author = stdin.readLineSync();
             book.update_author = new_author!;
             print("enter new book rating");
-                String? new_rating = stdin.readLineSync();
+            String? new_rating = stdin.readLineSync();
             book.update_rating = new_rating!;
           } catch (e) {
             print("book not found");
@@ -134,8 +130,7 @@ class Books {
         rate: data['rate'],
       );
   void displayBooks(bool header) {
-    if (header==true)
-      print('''bookName\t\tbookAuthor\t\trate\n''');
+    if (header == true) print('''bookName\t\tbookAuthor\t\trate\n''');
     print('${this.name} \t\t ${this.author}\t\t ${this.rate}');
   }
 
